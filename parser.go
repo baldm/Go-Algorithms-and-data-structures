@@ -36,3 +36,46 @@ func TwoLines() []int {
 func FourLines() ([]int, []int) {
 	return TwoLines(), TwoLines()
 }
+
+func QuickGraphInputParser() (int, [][]int, [][]int, []int) {
+	// A faster version of the graph parser using buffer
+	var nodeAmount int
+	var edgeAmount int
+	var Q1Amount int
+	var Q2Amount int
+	var firstCord int
+	var secondCord int
+
+	reader := bufio.NewReader(os.Stdin)
+
+	fmt.Fscanf(reader, "%d\n", &nodeAmount)
+	fmt.Fscanf(reader, "%d\n", &edgeAmount)
+
+	// Build edge matrix
+	edgesMatrix := make([][]int, edgeAmount)
+	// Parse input into edge matrix
+	for i := 0; i < edgeAmount; i++ {
+		fmt.Fscanf(reader, "%d %d\n", &firstCord, &secondCord)
+		edgesMatrix[i] = []int{firstCord, secondCord}
+	}
+
+	// Build neighbor question matrix
+	fmt.Fscanf(reader, "%d\n", &Q1Amount)
+	Q1List := make([][]int, Q1Amount)
+	// Parse input into edge matrix
+	for i := 0; i < Q1Amount; i++ {
+		fmt.Fscanf(reader, "%d %d\n", &firstCord, &secondCord)
+		Q1List[i] = []int{firstCord, secondCord}
+	}
+
+	// Build neighbor question matrix
+	fmt.Fscanf(reader, "%d\n", &Q2Amount)
+	Q2List := make([]int, Q2Amount)
+	// Parse input into edge matrix
+	for i := 0; i < Q2Amount; i++ {
+		fmt.Fscanf(reader, "%d\n", &firstCord)
+		Q2List[i] = firstCord
+	}
+
+	return nodeAmount, edgesMatrix, Q1List, Q2List
+}
