@@ -37,12 +37,10 @@ func FourLines() ([]int, []int) {
 	return TwoLines(), TwoLines()
 }
 
-func QuickGraphInputParser() (int, [][]int, [][]int, []int) {
+func QuickGraphInputParser() (int, [][]int) {
 	// A faster version of the graph parser using buffer
 	var nodeAmount int
 	var edgeAmount int
-	var Q1Amount int
-	var Q2Amount int
 	var firstCord int
 	var secondCord int
 
@@ -58,6 +56,17 @@ func QuickGraphInputParser() (int, [][]int, [][]int, []int) {
 		fmt.Fscanf(reader, "%d %d\n", &firstCord, &secondCord)
 		edgesMatrix[i] = []int{firstCord, secondCord}
 	}
+
+	return nodeAmount, edgesMatrix
+}
+
+func GraphQuestionParser() ([][]int, []int) {
+	var Q1Amount int
+	var Q2Amount int
+	var firstCord int
+	var secondCord int
+
+	reader := bufio.NewReader(os.Stdin)
 
 	// Build neighbor question matrix
 	fmt.Fscanf(reader, "%d\n", &Q1Amount)
@@ -76,6 +85,5 @@ func QuickGraphInputParser() (int, [][]int, [][]int, []int) {
 		fmt.Fscanf(reader, "%d\n", &firstCord)
 		Q2List[i] = firstCord
 	}
-
-	return nodeAmount, edgesMatrix, Q1List, Q2List
+	return Q1List, Q2List
 }
