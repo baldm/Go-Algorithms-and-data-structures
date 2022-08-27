@@ -1,13 +1,17 @@
 package main
 
-import "Go-Algorithms-and-data-structures/data-structures"
+import (
+	"fmt"
+)
 
 func main() {
 	// Used to call the different assignments
 
-	var nodeAmount, edgesMatrix = QuickGraphInputParser()
+	var edgesMatrix = QuickGraphInputParser()
 
-	graph := data_structures.ListGraphConstructor(nodeAmount, edgesMatrix)
-	
+	graph := ListGraphConstructor(edgesMatrix, true)
+
+	fmt.Println(BFS(graph, 0, 1))
+
 	return
 }

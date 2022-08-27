@@ -1,10 +1,10 @@
-package data_structures
+package main
 
 import (
 	"fmt"
 )
 
-func ListGraphConstructor(nodeAmount int, edgesMatrix [][]int) map[int][]int {
+func ListGraphConstructor(edgesMatrix [][]int, isOriented bool) map[int][]int {
 
 	// Build graph as map
 	var graph = make(map[int][]int)
@@ -14,7 +14,13 @@ func ListGraphConstructor(nodeAmount int, edgesMatrix [][]int) map[int][]int {
 		c1 := edgesMatrix[i][0]
 		c2 := edgesMatrix[i][1]
 		graph[c1] = append(graph[c1], c2)
-		graph[c2] = append(graph[c2], c1)
+
+		// If the graph is oriented
+		// Then we point both ways
+		if !isOriented {
+			graph[c2] = append(graph[c2], c1)
+		}
+
 	}
 
 	return graph
