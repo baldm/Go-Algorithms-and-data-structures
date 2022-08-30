@@ -37,7 +37,7 @@ func FourLines() ([]int, []int) {
 	return TwoLines(), TwoLines()
 }
 
-func QuickGraphInputParser() [][]int {
+func QuickGraphInputParser() (int, [][]int) {
 	// A faster version of the graph parser using buffer
 	var nodeAmount int
 	var edgeAmount int
@@ -57,7 +57,7 @@ func QuickGraphInputParser() [][]int {
 		edgesMatrix[i] = []int{firstCord, secondCord}
 	}
 
-	return edgesMatrix
+	return nodeAmount, edgesMatrix
 }
 
 func GraphQuestionParser() ([][]int, []int) {
