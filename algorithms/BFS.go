@@ -1,6 +1,6 @@
 package algorithms
 
-func BFS(graph map[int][]int, nodeAmount int, startNode int, endNode int) int {
+func BFS(graph map[int][]int, startNode int, endNode int) int {
 	// Finds the shortest path between nodes
 
 	q := make([]int, 0)               // Queue for the BFS
