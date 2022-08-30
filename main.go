@@ -2,17 +2,15 @@ package main
 
 import (
 	"Go-Algorithms-and-data-structures/algorithms"
-	"Go-Algorithms-and-data-structures/data-structures"
+	"fmt"
 )
 
 func main() {
 	// Used to call the different assignments
 
-	var edgesMatrix = QuickGraphInputParser()
+	var edgesMatrix = WeightedGraphInputParser()
 
-	graph := data_structures.ListGraphConstructor(edgesMatrix, true)
-
-	algorithms.DFS(graph, 0)
+	fmt.Println(algorithms.Kruskals(len(edgesMatrix)+1, edgesMatrix))
 
 	return
 }

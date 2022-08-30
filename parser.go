@@ -7,6 +7,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -37,12 +38,12 @@ func FourLines() ([]int, []int) {
 	return TwoLines(), TwoLines()
 }
 
-func QuickGraphInputParser() [][]int {
+func GraphInputParser() [][]int {
 	// A faster version of the graph parser using buffer
 	var nodeAmount int
 	var edgeAmount int
-	var firstCord int
-	var secondCord int
+	var firstCord int  // x cord
+	var secondCord int // y cord
 
 	reader := bufio.NewReader(os.Stdin)
 
@@ -57,6 +58,32 @@ func QuickGraphInputParser() [][]int {
 		edgesMatrix[i] = []int{firstCord, secondCord}
 	}
 
+	return edgesMatrix
+}
+
+func WeightedGraphInputParser() [][]int {
+	// A faster version of the graph parser using buffer
+	var nodeAmount int
+	var edgeAmount int
+	var firstCord int  // x cord
+	var secondCord int // y cord
+	var thirdCord int  // node weight
+
+	reader := bufio.NewReader(os.Stdin)
+
+	fmt.Fscanf(reader, "%d\n", &nodeAmount)
+	fmt.Fscanf(reader, "%d\n", &edgeAmount)
+
+	// Build edge matrix
+	edgesMatrix := make([][]int, edgeAmount)
+	// Parse input into edge matrix
+	for i := 0; i < edgeAmount; i++ {
+		fmt.Fscanf(reader, "%d %d %d\n", &firstCord, &secondCord, &thirdCord)
+		edgesMatrix[i] = []int{firstCord, secondCord, thirdCord}
+	}
+	sort.Slice(edgesMatrix, func(i, j int) bool {
+		return edgesMatrix[i][2] < edgesMatrix[j][2]
+	})
 	return edgesMatrix
 }
 
